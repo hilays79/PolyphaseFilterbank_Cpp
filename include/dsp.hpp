@@ -1,17 +1,17 @@
 #pragma once
 #include <vector>
+#include <fftw3.h>
 
-namespace dsp
+namespace misc
 {
     // This function converts a power value to decibels (dB).
     double db(double x);
+    int index_2d_to_1d(int i, int j, int n_cols);
 }
 
 namespace windowing
 {
-    // This function applies a Hamming window to the input data.
-    void hamming_window(double* data, size_t size); // double* data is a pointer to the input array, size is the number of elements in the array
-    void hann_window(double* data, size_t size); // double* data is a pointer to the input array, size is the number of elements in the array
+    std::vector<double> generate_win_coeffs(int n_taps, int n_chan);
 }
 
 namespace ts

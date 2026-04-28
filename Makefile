@@ -1,14 +1,25 @@
-# For storing executables
+# --- Compiler Settings ---
+CXX = g++-15
+CXXFLAGS = -std=c++17 -Iinclude -I/opt/homebrew/include
+
+# --- Library Linking ---
+# LDFLAGS: Tells the compiler WHERE to look for libraries
+LDFLAGS = -L/opt/homebrew/lib
+
+# LDLIBS: Tells the compiler WHICH libraries to link
+LDLIBS = -lfftw3
+
+# --- File Paths ---
 OBJ_DIR = objs
-# source files
-SOURCES = $(wildcard src/*.cpp)
-# object file path and name
+SOURCES = $(wildcard src/*.cpp) # wildcard finds all .cpp files in the src directory
 EXECUTABLE = $(OBJ_DIR)/PFB_app
+
+# --- Build Targets ---
 
 # command to compile the code
 build:
 	@echo "Compiling the code..."
-	g++-15 -std=c++17 -Iinclude $(SOURCES) -o $(EXECUTABLE)
+	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(EXECUTABLE) $(LDFLAGS) $(LDLIBS)
 
 # command to run the executable
 run: build
