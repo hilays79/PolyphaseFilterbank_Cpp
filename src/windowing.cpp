@@ -30,7 +30,7 @@ namespace windowing {
     std::vector<double> generate_sinc(int n_taps, int n_chan) {
         int n_samples = n_taps * n_chan;
         std::vector<double> sinc(n_samples);
-        double fc = 1.0 / n_chan; // Normalized cutoff frequency (1/n_chan)
+        double fc = 1.0 / (2.0 * n_chan); // Normalized cutoff frequency (1/n_chan)
         double center = (n_samples - 1) / 2.0;
 
         for (int i = 0; i < n_samples; ++i) {

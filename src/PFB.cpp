@@ -3,6 +3,7 @@
 #include <complex>
 #include <fftw3.h>
 #include "dsp.hpp"
+#include "dada_io.hpp"
 
 std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& signal, int n_taps, int n_chan, int n_windows)
 {
@@ -27,6 +28,7 @@ std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& s
                 
             }
             filtered_signal[misc::index_2d_to_1d(n_t, n_c, n_chan)] = tap_sum; // Store the result in the filtered signal
+            // POSSIBLE OPTIMISATION: call to index_2d_to_1d could be more optimised by inline function.
         }
     }
     std::cout << "Filtering completed." << std::endl;
@@ -98,16 +100,28 @@ std::vector<double> PFB_filterbank(std::vector<std::complex<double>>& signal, in
     return psd;
 }
 
-int main()
-{
-    int n_taps = 4; // Number of taps in the filter
-    int n_chan = 16; // Number of channels
-    int n_windows = 4; // Number of windows
-    double omega = M_PI / 2; // Frequency of the sinusoidal signal
-    bool include_noise = false; // Whether to include noise in the generated signal
-    bool complex_phasor = true; // Whether to generate a complex phasor or a real sinusoidal signal
-    std::vector<std::complex<double>> signal = ts::generate_sinusoidal(n_taps, n_chan, n_windows, omega, include_noise, complex_phasor);
-    std::vector<double> psd = PFB_filterbank(signal, n_taps, n_chan, n_windows);
+int main() {
+    // 1. Setup Parameters
+    int M = 4, P = 256, W = 100;
+    double freq = 1.0;
+    int nbit = 64; 
+    int ndim_out = 1; // 1 for real PSD output, 2 for complex output
+    bool include_noise = false;
+    std::string signal_type = "complex_phasors";
+
+    // 2. Wrap your PFB function so the pipeline can call it
+    auto my_pfb = [](std::vector<std::complex<double>>& d, int m, int p, int w) {
+        return PFB_filterbank(d, m, p, w);
+    };
+
+    // 3. Run the entire pipeline in one command
+    try {
+        dada::run_pipeline<std::complex<double>, double>(
+            my_pfb, signal_type, M, P, W, ndim_out, nbit, include_noise, freq
+        );
+    } catch (const std::exception& e) {
+        std::cerr << "Fatal Error: " << e.what() << "\n";
+    }
 
     return 0;
 }
