@@ -8,6 +8,7 @@
 
 std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& signal, int n_taps, int n_chan, int n_windows)
 {
+    // setup start
     std::cout << "Starting filtering..." << std::endl;
     std::vector<double> win_coeffs = windowing::generate_win_coeffs(n_taps, n_chan);
     int n_time_blocks = n_taps*n_windows - n_taps + 1; // Number of time blocks we can convolve with the window coefficients
@@ -17,6 +18,8 @@ std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& s
 
     std::cout << "Filtered signal size: " << filtered_signal.size() << std::endl;
 
+    //setup end
+    //execution start
     // Now perform the convolution of the input signal with the window coefficients.
     for (int n_t = 0; n_t < n_time_blocks; ++n_t) { // Loop over time blocks
         for (int n_c = 0; n_c < n_chan; ++n_c) { // Loop over channels
@@ -29,15 +32,16 @@ std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& s
                 
             }
             filtered_signal[misc::index_2d_to_1d(n_t, n_c, n_chan)] = tap_sum; // Store the result in the filtered signal
-            // POSSIBLE OPTIMISATION: call to index_2d_to_1d could be more optimised by inline function.
         }
     }
+    // execution end
     std::cout << "Filtering completed." << std::endl;
     return filtered_signal;
 }
 
 std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtered_signal, int n_taps, int n_chan, int n_windows)
 {
+    // setup start
     std::cout << "Starting FFT..." << std::endl;
     
     // Calculate the number of time blocks to know how many FFTs we need to do
@@ -54,6 +58,7 @@ std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtere
     // POSSIBLE OPTIMISATION: A single plan can be created here using fftw_plan_many_dft.
     // POSSIBLE OPTIMISATION: FFTW_ESTIMATE can be replaced with FFTW_MEASURE for better performance at the cost of longer planning time.
 
+    // setup end
     // Now perform the FFT for each time block. Each time block has n_chan samples, and we will have n_time_blocks of them.
     for (int n_t = 0; n_t < n_time_blocks; ++n_t) {
         
@@ -67,6 +72,7 @@ std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtere
         fftw_execute_dft(plan, row_ptr, row_ptr);
     }
     // Clean up the FFTW plan
+    // execution end
     fftw_destroy_plan(plan);
     std::cout << "FFT completed." << std::endl;
     return x_pfb;
@@ -80,6 +86,7 @@ std::vector<double> PSD(std::vector<std::complex<double>>& x_pfb, int n_taps, in
     int valid_time_blocks = (n_time_blocks / n_integrations) * n_integrations; // This ensures we only consider complete integration blocks
     int n_integrated_blocks = valid_time_blocks / n_integrations; // Number of blocks after integration
     std::vector<double> psd(n_integrated_blocks * n_chan);
+    // execution start
     for (int i = 0; i < valid_time_blocks; ++i) {
         int ind_integration_block = i / n_integrations; // Determine which integration block this time block belongs to
         for (int j = 0; j < n_chan; ++j) {
@@ -89,6 +96,7 @@ std::vector<double> PSD(std::vector<std::complex<double>>& x_pfb, int n_taps, in
             // POSSIBLE OPTIMISATION: number of divisions could be reduced by another loop.
         }
     }
+    // execution end
     std::cout << "PSD calculation completed." << std::endl;
     return psd;
 }
