@@ -53,16 +53,25 @@ namespace dada {
         return out;
     }
 
-    // --- 3. HELPER: BUILD FILEPATHS ---
+// --- 3. HELPER: BUILD FILEPATHS ---
     inline std::string build_filepath(bool is_input, const std::string& type, int M, int P, int W, bool noise, double freq, int d_per, int d_start) {
         std::string base = is_input ? "/Users/hilays79/Fourier_Space/Data/input_files/" : "/Users/hilays79/Fourier_Space/Data/output_files/c++/";
         std::ostringstream oss;
         std::string noise_str = noise ? "True" : "False";
 
+        // Format the double to match Python's default behavior exactly
+        std::ostringstream f_oss;
+        f_oss << freq;
+        std::string freq_str = f_oss.str();
+        if (freq_str.find('.') == std::string::npos) {
+            freq_str += ".0"; // Add .0 if it's a whole number
+        }
+
         if (type == "dirac_deltas") {
             oss << type << "_d" << d_per << "_s" << d_start << "_noise" << noise_str;
         } else {
-            oss << type << "_freq" << freq << "_M" << M << "_P" << P << "_W" << W << "_noise" << noise_str;
+            // Use our newly formatted freq_str here
+            oss << type << "_freq" << freq_str << "_M" << M << "_P" << P << "_W" << W << "_noise" << noise_str;
         }
         return base + type + "/" + oss.str() + ".dada";
     }

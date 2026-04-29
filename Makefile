@@ -1,6 +1,6 @@
 # --- Compiler Settings ---
 CXX = g++-15
-CXXFLAGS = -std=c++17 -Iinclude -I/opt/homebrew/include
+CXXFLAGS = -std=c++17 -O3 -Iinclude -I/opt/homebrew/include
 
 # --- Library Linking ---
 # LDFLAGS: Tells the compiler WHERE to look for libraries

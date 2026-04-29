@@ -4,6 +4,7 @@
 #include <fftw3.h>
 #include "dsp.hpp"
 #include "dada_io.hpp"
+#include <chrono>
 
 std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& signal, int n_taps, int n_chan, int n_windows)
 {
@@ -100,24 +101,39 @@ std::vector<double> PFB_filterbank(std::vector<std::complex<double>>& signal, in
     return psd;
 }
 
-int main() {
-    // 1. Setup Parameters
-    int M = 4, P = 256, W = 100;
-    double freq = 1.0;
-    int nbit = 64; 
-    int ndim_out = 1; // 1 for real PSD output, 2 for complex output
-    bool include_noise = false;
-    std::string signal_type = "complex_phasors";
+int main(int argc, char* argv[]) {
+    int M = 4, P = 256;
+    
+    // 1. Allow Python to pass the Window size via command line
+    int W = 100;
+    if (argc > 1) {
+        W = std::stoi(argv[1]);
+    }
 
-    // 2. Wrap your PFB function so the pipeline can call it
+    double freq = 1.0;
+    int nbit = 64, ndim_out = 1; 
+    bool include_noise = false;
+    std::string signal_type = "complex_phasors"; // or "complex_phasors" or "dirac_deltas" or "sinusoidals"
+    int delta_period = 257, delta_start = 0;
+
+    // 2. Add strict timing around the math function ONLY
     auto my_pfb = [](std::vector<std::complex<double>>& d, int m, int p, int w) {
-        return PFB_filterbank(d, m, p, w);
+        auto start = std::chrono::high_resolution_clock::now();
+        
+        auto result = PFB_filterbank(d, m, p, w); // The actual math
+        
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end - start;
+        
+        // Print this exact flag so Python can scrape the time
+        std::cout << "CPP_MATH_TIME:" << diff.count() << "\n";
+        
+        return result;
     };
 
-    // 3. Run the entire pipeline in one command
     try {
         dada::run_pipeline<std::complex<double>, double>(
-            my_pfb, signal_type, M, P, W, ndim_out, nbit, include_noise, freq
+            my_pfb, signal_type, M, P, W, ndim_out, nbit, include_noise, freq, delta_period, delta_start
         );
     } catch (const std::exception& e) {
         std::cerr << "Fatal Error: " << e.what() << "\n";
