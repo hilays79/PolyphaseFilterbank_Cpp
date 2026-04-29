@@ -49,7 +49,12 @@ std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtere
     int n_time_blocks = n_taps * n_windows - n_taps + 1; 
     std::vector<std::complex<double>> x_pfb = filtered_signal;
     auto* data_ptr = reinterpret_cast<fftw_complex*>(x_pfb.data());
-    fftw_plan plan = fftw_plan_dft_1d(n_chan, data_ptr, data_ptr, FFTW_FORWARD, FFTW_ESTIMATE);
+    // Create a single plan for multiple FFTs
+    int n[] = {n_chan};
+    fftw_plan plan = fftw_plan_many_dft(1, n, n_time_blocks,
+                                        data_ptr, NULL, 1, n_chan,
+                                        data_ptr, NULL, 1, n_chan,
+                                        FFTW_FORWARD, FFTW_ESTIMATE);
     
     auto s_end = std::chrono::high_resolution_clock::now();
     setup_time += std::chrono::duration<double>(s_end - s_start).count();
@@ -58,11 +63,7 @@ std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtere
     // --- EXECUTION START ---
     auto e_start = std::chrono::high_resolution_clock::now();
     
-    for (int n_t = 0; n_t < n_time_blocks; ++n_t) {
-        int offset = misc::index_2d_to_1d(n_t, 0, n_chan);
-        fftw_complex* row_ptr = &data_ptr[offset];
-        fftw_execute_dft(plan, row_ptr, row_ptr);
-    }
+    fftw_execute(plan);
     
     auto e_end = std::chrono::high_resolution_clock::now();
     exec_time += std::chrono::duration<double>(e_end - e_start).count();
