@@ -6,7 +6,10 @@ namespace misc
 {
     // This function converts a power value to decibels (dB).
     double db(double x);
-    int index_2d_to_1d(int i, int j, int n_cols);
+
+    inline int index_2d_to_1d(int i, int j, int n_cols) {
+        return i * n_cols + j;
+    }
 }
 
 namespace windowing
