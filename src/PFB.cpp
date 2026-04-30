@@ -51,8 +51,8 @@ std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtere
     auto s_start = std::chrono::high_resolution_clock::now();
     
     int n_time_blocks = n_taps * n_windows - n_taps + 1; 
-    std::vector<std::complex<double>> x_pfb = filtered_signal;
-    auto* data_ptr = reinterpret_cast<fftw_complex*>(x_pfb.data());
+    // std::vector<std::complex<double>> x_pfb = filtered_signal;
+    auto* data_ptr = reinterpret_cast<fftw_complex*>(filtered_signal.data());
     // Create a single plan for multiple FFTs
     int n[] = {n_chan};
     fftw_plan plan = fftw_plan_many_dft(1, n, n_time_blocks,
@@ -74,7 +74,7 @@ std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtere
     // --- EXECUTION END ---
 
     fftw_destroy_plan(plan);
-    return x_pfb;
+    return filtered_signal; // The FFT is done in-place, so we can return the same vector
 }
 
 std::vector<double> PSD(std::vector<std::complex<double>>& x_pfb, int n_taps, int n_chan, int n_windows, int n_integrations, double& setup_time, double& exec_time)
