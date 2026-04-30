@@ -7,33 +7,26 @@
 #include "FFTW.hpp"
 #include <chrono>
 
-std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
+template <typename T> // Template function declarations where T is either double or float.
+std::vector<std::complex<T>> filtering(std::vector<std::complex<T>>& signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
 {
-    // --- SETUP START ---
     auto s_start = std::chrono::high_resolution_clock::now();
     
-    std::vector<double> win_coeffs = windowing::generate_win_coeffs(n_taps, n_chan);
+    std::vector<T> win_coeffs = windowing::generate_win_coeffs<T>(n_taps, n_chan); 
     int n_time_blocks = n_taps*n_windows - n_taps + 1; 
-    std::vector<std::complex<double>> filtered_signal(n_time_blocks * n_chan); 
+    std::vector<std::complex<T>> filtered_signal(n_time_blocks * n_chan); 
 
     auto s_end = std::chrono::high_resolution_clock::now();
     setup_time += std::chrono::duration<double>(s_end - s_start).count();
-    // --- SETUP END ---
 
-    // --- EXECUTION START ---
     auto e_start = std::chrono::high_resolution_clock::now();
     
     for (int n_t = 0; n_t < n_time_blocks; ++n_t) {
-        // Calculate the base index (column 0) for the output
         int out_offset = misc::index_2d_to_1d(n_t, 0, n_chan);
-        
         for (int m = 0; m < n_taps; ++m) {
-            // Calculate the base index (column 0) for the window and signal
             int w_offset = misc::index_2d_to_1d(m, 0, n_chan);
             int s_offset = misc::index_2d_to_1d(n_t + m, 0, n_chan);
-            
             for (int n_c = 0; n_c < n_chan; ++n_c) {
-                // Simply add the column offset (n_c) to the hoisted row offsets
                 filtered_signal[out_offset + n_c] += signal[s_offset + n_c] * win_coeffs[w_offset + n_c];
             }
         }
@@ -41,13 +34,12 @@ std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& s
     
     auto e_end = std::chrono::high_resolution_clock::now();
     exec_time += std::chrono::duration<double>(e_end - e_start).count();
-    // --- EXECUTION END ---
 
     return filtered_signal;
 }
 
 template <typename T>
-std::vector<std::complex<T>> FFT(std::vector<std::complex<T>>& filtered_signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
+void FFT(std::vector<std::complex<T>>& filtered_signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
 {
     auto s_start = std::chrono::high_resolution_clock::now();
     int n_time_blocks = n_taps * n_windows - n_taps + 1; 
@@ -74,24 +66,21 @@ std::vector<std::complex<T>> FFT(std::vector<std::complex<T>>& filtered_signal, 
     exec_time += std::chrono::duration<double>(e_end - e_start).count();
 
     FFTWWrapper<T>::destroy_plan(plan);
-    return filtered_signal; 
 }
 
-std::vector<double> PSD(std::vector<std::complex<double>>& x_pfb, int n_taps, int n_chan, int n_windows, int n_integrations, double& setup_time, double& exec_time)
+template <typename T>
+std::vector<T> PSD(std::vector<std::complex<T>>& x_pfb, int n_taps, int n_chan, int n_windows, int n_integrations, double& setup_time, double& exec_time)
 {
-    // --- SETUP START ---
     auto s_start = std::chrono::high_resolution_clock::now();
     
     int n_time_blocks = n_taps * n_windows - n_taps + 1;
     int valid_time_blocks = (n_time_blocks / n_integrations) * n_integrations; 
     int n_integrated_blocks = valid_time_blocks / n_integrations; 
-    std::vector<double> psd(n_integrated_blocks * n_chan);
+    std::vector<T> psd(n_integrated_blocks * n_chan);
     
     auto s_end = std::chrono::high_resolution_clock::now();
     setup_time += std::chrono::duration<double>(s_end - s_start).count();
-    // --- SETUP END ---
 
-    // --- EXECUTION START ---
     auto e_start = std::chrono::high_resolution_clock::now();
     
     for (int i = 0; i < valid_time_blocks; ++i) {
@@ -105,22 +94,20 @@ std::vector<double> PSD(std::vector<std::complex<double>>& x_pfb, int n_taps, in
     
     auto e_end = std::chrono::high_resolution_clock::now();
     exec_time += std::chrono::duration<double>(e_end - e_start).count();
-    // --- EXECUTION END ---
 
     return psd;
 }
 
-std::vector<double> PFB_filterbank(std::vector<std::complex<double>>& signal, int n_taps, int n_chan, int n_windows, int n_integrations=1)
+template <typename T>
+std::vector<T> PFB_filterbank(std::vector<std::complex<T>>& signal, int n_taps, int n_chan, int n_windows, int n_integrations=1)
 {
     double setup_time = 0.0;
     double exec_time = 0.0;
 
-    // Pass the timing variables by reference so they accumulate across all three functions
-    std::vector<std::complex<double>> filtered_signal = filtering(signal, n_taps, n_chan, n_windows, setup_time, exec_time);
-    std::vector<std::complex<double>> x_pfb = FFT(filtered_signal, n_taps, n_chan, n_windows, setup_time, exec_time);
-    std::vector<double> psd = PSD(x_pfb, n_taps, n_chan, n_windows, n_integrations, setup_time, exec_time);
+    std::vector<std::complex<T>> filtered_signal = filtering<T>(signal, n_taps, n_chan, n_windows, setup_time, exec_time);
+    FFT<T>(filtered_signal, n_taps, n_chan, n_windows, setup_time, exec_time); // In-place FFT, so we don't need to capture the return value.
+    std::vector<T> psd = PSD<T>(filtered_signal, n_taps, n_chan, n_windows, n_integrations, setup_time, exec_time);
 
-    // Print the sub-times so Python can scrape them
     std::cout << "CPP_SETUP_TIME:" << setup_time << "\n";
     std::cout << "CPP_EXEC_TIME:" << exec_time << "\n";
 
@@ -130,30 +117,69 @@ std::vector<double> PFB_filterbank(std::vector<std::complex<double>>& signal, in
 int main(int argc, char* argv[]) {
     int M = 4, P = 256;
     int W = 100;
-    if (argc > 1) {
-        W = std::stoi(argv[1]);
-    }
+    
+    // --- COMMAND LINE ARGUMENTS ---
+    int in_NBIT = 64;
+    int out_NBIT = 32;
+
+    if (argc > 1) W = std::stoi(argv[1]);
+    if (argc > 2) in_NBIT = std::stoi(argv[2]);
+    if (argc > 3) out_NBIT = std::stoi(argv[3]);
 
     double freq = 1.0;
-    int nbit = 64, ndim_out = 1; 
+    int ndim_out = 1; 
     bool include_noise = false;
     std::string signal_type = "complex_phasors"; 
     int delta_period = 257, delta_start = 0;
 
-    auto my_pfb = [](std::vector<std::complex<double>>& d, int m, int p, int w) {
-        auto start = std::chrono::high_resolution_clock::now();
-        auto result = PFB_filterbank(d, m, p, w); 
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> diff = end - start;
-        
-        std::cout << "CPP_MATH_TIME:" << diff.count() << "\n";
-        return result;
-    };
-
     try {
-        dada::run_pipeline<std::complex<double>, double>(
-            my_pfb, signal_type, M, P, W, ndim_out, nbit, include_noise, freq, delta_period, delta_start
-        );
+        // SCENARIO 1: 64-bit Input -> 64-bit Output
+        if (in_NBIT == 64 && out_NBIT == 64) {
+            std::cout << "Reading 64-bit | Math 64-bit\n";
+            auto my_pfb = [](std::vector<std::complex<double>>& d, int m, int p, int w) {
+                auto start = std::chrono::high_resolution_clock::now();
+                auto result = PFB_filterbank<double>(d, m, p, w); 
+                auto end = std::chrono::high_resolution_clock::now();
+                std::cout << "CPP_MATH_TIME:" << std::chrono::duration<double>(end - start).count() << "\n";
+                return result;
+            };
+            dada::run_pipeline<std::complex<double>, double>(my_pfb, signal_type, in_NBIT, out_NBIT, M, P, W, ndim_out, include_noise, freq, delta_period, delta_start);
+        } 
+        
+        // SCENARIO 2: 64-bit Input -> 32-bit Output (Downcast)
+        else if (in_NBIT == 64 && out_NBIT == 32) {
+            std::cout << "Reading 64-bit | Math 32-bit (Downcasting)\n";
+            auto my_pfb = [](std::vector<std::complex<double>>& d, int m, int p, int w) {
+                std::vector<std::complex<float>> d_float(d.begin(), d.end()); // Safe Downcast
+                auto start = std::chrono::high_resolution_clock::now();
+                auto result = PFB_filterbank<float>(d_float, m, p, w); 
+                auto end = std::chrono::high_resolution_clock::now();
+                std::cout << "CPP_MATH_TIME:" << std::chrono::duration<double>(end - start).count() << "\n";
+                return result;
+            };
+            dada::run_pipeline<std::complex<double>, float>(my_pfb, signal_type, in_NBIT, out_NBIT, M, P, W, ndim_out, include_noise, freq, delta_period, delta_start);
+        }
+
+        // SCENARIO 3: 32-bit Input -> 32-bit Output (Native 32-bit)
+        else if (in_NBIT == 32 && out_NBIT == 32) {
+            std::cout << "Reading 32-bit | Math 32-bit\n";
+            auto my_pfb = [](std::vector<std::complex<float>>& d, int m, int p, int w) {
+                auto start = std::chrono::high_resolution_clock::now();
+                auto result = PFB_filterbank<float>(d, m, p, w); 
+                auto end = std::chrono::high_resolution_clock::now();
+                std::cout << "CPP_MATH_TIME:" << std::chrono::duration<double>(end - start).count() << "\n";
+                return result;
+            };
+            // Notice the template type here is now std::complex<float> for the INPUT!
+            dada::run_pipeline<std::complex<float>, float>(my_pfb, signal_type, in_NBIT, out_NBIT, M, P, W, ndim_out, include_noise, freq, delta_period, delta_start);
+        }
+        
+        // Error trap for upcasting (32->64) or invalid NBITs
+        else {
+            std::cerr << "Fatal Error: Unsupported NBIT combination. Input: " << in_NBIT << ", Output: " << out_NBIT << "\n";
+            return 1;
+        }
+
     } catch (const std::exception& e) {
         std::cerr << "Fatal Error: " << e.what() << "\n";
     }

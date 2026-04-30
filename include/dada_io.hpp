@@ -53,27 +53,32 @@ namespace dada {
         return out;
     }
 
-// --- 3. HELPER: BUILD FILEPATHS ---
-    inline std::string build_filepath(bool is_input, const std::string& type, int M, int P, int W, bool noise, double freq, int d_per, int d_start) {
+// --- 3. HELPER: BUILD FILEPATHS (Updated with bit-depth subdirectories) ---
+    inline std::string build_filepath(bool is_input, const std::string& type, int nbit, int M, int P, int W, bool noise, double freq, int d_per, int d_start) {
         std::string base = is_input ? "/Users/hilays79/Fourier_Space/Data/input_files/" : "/Users/hilays79/Fourier_Space/Data/output_files/c++/";
-        std::ostringstream oss;
+        
+        // New directory structure: {type}/{nbit}-bit/
+        std::string bit_dir = std::to_string(nbit) + "-bit/";
+        std::string full_dir = base + type + "/" + bit_dir;
+        
+        std::ostringstream filename;
         std::string noise_str = noise ? "True" : "False";
 
-        // Format the double to match Python's default behavior exactly
+        // Format frequency string
         std::ostringstream f_oss;
         f_oss << freq;
         std::string freq_str = f_oss.str();
         if (freq_str.find('.') == std::string::npos) {
-            freq_str += ".0"; // Add .0 if it's a whole number
+            freq_str += ".0";
         }
 
         if (type == "dirac_deltas") {
-            oss << type << "_d" << d_per << "_s" << d_start << "_noise" << noise_str;
+            filename << type << "_d" << d_per << "_s" << d_start << "_noise" << noise_str;
         } else {
-            // Use our newly formatted freq_str here
-            oss << type << "_freq" << freq_str << "_M" << M << "_P" << P << "_W" << W << "_noise" << noise_str;
+            filename << type << "_freq" << freq_str << "_M" << M << "_P" << P << "_W" << W << "_noise" << noise_str;
         }
-        return base + type + "/" + oss.str() + ".dada";
+        
+        return full_dir + filename.str() + ".dada";
     }
 
     // --- 4. SAVER (WRITE) ---
@@ -90,27 +95,31 @@ namespace dada {
         f.write(reinterpret_cast<const char*>(data.data()), data.size() * sizeof(T));
     }
 
-    // --- 5. THE END-TO-END PIPELINE ---
+// --- 5. THE END-TO-END PIPELINE (Updated to handle in_NBIT and out_NBIT) ---
     template <typename InT, typename OutT, typename Func>
-    std::string run_pipeline(Func pfb_func, const std::string& type, int M, int P_out, int W, int ndim_out, int nbit, bool noise, double freq = 1.0, int d_per = 0, int d_start = 0) {
+    std::string run_pipeline(Func pfb_func, const std::string& type, int in_nbit, int out_nbit, int M, int P_out, int W, int ndim_out, bool noise, double freq = 1.0, int d_per = 0, int d_start = 0) {
         
-        std::string in_path = build_filepath(true, type, M, P_out, W, noise, freq, d_per, d_start);
+        // 1. Build input path using in_nbit
+        std::string in_path = build_filepath(true, type, in_nbit, M, P_out, W, noise, freq, d_per, d_start);
         
         if (!fs::exists(in_path)) {
-            std::cerr << "\n[ERROR] GENERATE BINARY USING PYTHON. Missing file:\n" << in_path << "\n\n";
+            std::cerr << "\n[ERROR] Missing input file at: " << in_path << "\n";
             exit(1); 
         }
 
-        std::cout << "Reading input: " << in_path << "\n";
+        std::cout << "Reading " << in_nbit << "-bit input: " << in_path << "\n";
         auto input = read_dada_for_pfb<InT>(in_path);
         
         std::cout << "Running PFB...\n";
         std::vector<OutT> out_data = pfb_func(input.data, M, P_out, W);
 
-        std::string out_path = build_filepath(false, type, M, P_out, W, noise, freq, d_per, d_start);
-        save_dada(out_data, P_out, ndim_out, nbit, out_path);
+        // 2. Build output path using out_nbit
+        std::string out_path = build_filepath(false, type, out_nbit, M, P_out, W, noise, freq, d_per, d_start);
         
-        std::cout << "Saved output: " << out_path << "\nPipeline complete!\n";
+        // 3. Save using out_nbit for the header
+        save_dada(out_data, P_out, ndim_out, out_nbit, out_path);
+        
+        std::cout << "Saved " << out_nbit << "-bit output: " << out_path << "\nPipeline complete!\n";
         return out_path;
     }
 
