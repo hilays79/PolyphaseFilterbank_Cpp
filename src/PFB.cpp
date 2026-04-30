@@ -22,15 +22,19 @@ std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& s
     // --- EXECUTION START ---
     auto e_start = std::chrono::high_resolution_clock::now();
     
-    for (int n_t = 0; n_t < n_time_blocks; ++n_t) { 
-        for (int n_c = 0; n_c < n_chan; ++n_c) { 
-            std::complex<double> tap_sum = (0.0, 0.0); 
-            for (int m = 0; m < n_taps; ++m) { 
-                int s_index = misc::index_2d_to_1d(n_t + m, n_c, n_chan); 
-                int w_index = misc::index_2d_to_1d(m, n_c, n_chan); 
-                tap_sum += signal[s_index] * win_coeffs[w_index]; 
+    for (int n_t = 0; n_t < n_time_blocks; ++n_t) {
+        // Calculate the base index (column 0) for the output
+        int out_offset = misc::index_2d_to_1d(n_t, 0, n_chan);
+        
+        for (int m = 0; m < n_taps; ++m) {
+            // Calculate the base index (column 0) for the window and signal
+            int w_offset = misc::index_2d_to_1d(m, 0, n_chan);
+            int s_offset = misc::index_2d_to_1d(n_t + m, 0, n_chan);
+            
+            for (int n_c = 0; n_c < n_chan; ++n_c) {
+                // Simply add the column offset (n_c) to the hoisted row offsets
+                filtered_signal[out_offset + n_c] += signal[s_offset + n_c] * win_coeffs[w_offset + n_c];
             }
-            filtered_signal[misc::index_2d_to_1d(n_t, n_c, n_chan)] = tap_sum; 
         }
     }
     
