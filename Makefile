@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++17 -O3 -Iinclude -I/opt/homebrew/include
 LDFLAGS = -L/opt/homebrew/lib
 
 # LDLIBS: Tells the compiler WHICH libraries to link
-LDLIBS = -lfftw3
+LDLIBS = -lfftw3 -lfftw3f
 
 # --- File Paths ---
 OBJ_DIR = objs

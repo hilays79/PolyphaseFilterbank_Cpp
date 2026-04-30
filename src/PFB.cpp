@@ -4,6 +4,7 @@
 #include <fftw3.h>
 #include "dsp.hpp"
 #include "dada_io.hpp"
+#include "FFTW.hpp"
 #include <chrono>
 
 std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
@@ -45,36 +46,35 @@ std::vector<std::complex<double>> filtering(std::vector<std::complex<double>>& s
     return filtered_signal;
 }
 
-std::vector<std::complex<double>> FFT(std::vector<std::complex<double>>& filtered_signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
+template <typename T>
+std::vector<std::complex<T>> FFT(std::vector<std::complex<T>>& filtered_signal, int n_taps, int n_chan, int n_windows, double& setup_time, double& exec_time)
 {
-    // --- SETUP START ---
     auto s_start = std::chrono::high_resolution_clock::now();
-    
     int n_time_blocks = n_taps * n_windows - n_taps + 1; 
-    // std::vector<std::complex<double>> x_pfb = filtered_signal;
-    auto* data_ptr = reinterpret_cast<fftw_complex*>(filtered_signal.data());
-    // Create a single plan for multiple FFTs
+
+    // Use the alias for the pointer cast (required)
+    auto* data_ptr = reinterpret_cast<typename FFTWWrapper<T>::complex_type*>(filtered_signal.data());
+    
     int n[] = {n_chan};
-    fftw_plan plan = fftw_plan_many_dft(1, n, n_time_blocks,
-                                        data_ptr, NULL, 1, n_chan,
-                                        data_ptr, NULL, 1, n_chan,
-                                        FFTW_FORWARD, FFTW_ESTIMATE);
+
+    // Use 'auto' for the plan (it deduces fftw_plan or fftwf_plan automatically)
+    auto plan = FFTWWrapper<T>::plan_many_dft(1, n, n_time_blocks,
+                                              data_ptr, NULL, 1, n_chan,
+                                              data_ptr, NULL, 1, n_chan,
+                                              FFTW_FORWARD, FFTW_ESTIMATE);
     
     auto s_end = std::chrono::high_resolution_clock::now();
     setup_time += std::chrono::duration<double>(s_end - s_start).count();
-    // --- SETUP END ---
 
-    // --- EXECUTION START ---
     auto e_start = std::chrono::high_resolution_clock::now();
     
-    fftw_execute(plan);
+    FFTWWrapper<T>::execute(plan);
     
     auto e_end = std::chrono::high_resolution_clock::now();
     exec_time += std::chrono::duration<double>(e_end - e_start).count();
-    // --- EXECUTION END ---
 
-    fftw_destroy_plan(plan);
-    return filtered_signal; // The FFT is done in-place, so we can return the same vector
+    FFTWWrapper<T>::destroy_plan(plan);
+    return filtered_signal; 
 }
 
 std::vector<double> PSD(std::vector<std::complex<double>>& x_pfb, int n_taps, int n_chan, int n_windows, int n_integrations, double& setup_time, double& exec_time)
