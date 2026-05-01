@@ -1,3 +1,9 @@
+# This Makefile works on MacOS.
+# To use this, move this to the root directory.
+# In the root directory, run "mkdir objs"
+# Then run "make build" to compile
+# or "make run" to both compile and run the executable (stored in objs/)
+
 # --- Compiler Settings ---
 CXX = g++-15
 CXXFLAGS = -std=c++17 -O3 -Iinclude -I/opt/homebrew/include
@@ -13,6 +19,7 @@ LDLIBS = -lfftw3 -lfftw3f
 OBJ_DIR = objs
 SOURCES = $(wildcard src/*.cpp) # wildcard finds all .cpp files in the src directory
 EXECUTABLE = $(OBJ_DIR)/PFB_app
+.PHONY: build # build is not a directory, but a command
 
 # --- Build Targets ---
 
