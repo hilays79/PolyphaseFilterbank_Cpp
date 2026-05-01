@@ -15,9 +15,9 @@ The CXX compiler identification is GNU, found in "/Users/hilays79/Fourier_Space/
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /Users/hilays79/Fourier_Space/codes/PFB_cpp/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_e387d/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_e387d.dir/build.make CMakeFiles/cmTC_e387d.dir/build
-Building CXX object CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o
-/opt/homebrew/bin/g++-15   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk   -v -Wl,-v -o CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_f0dcd/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_f0dcd.dir/build.make CMakeFiles/cmTC_f0dcd.dir/build
+Building CXX object CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o
+/opt/homebrew/bin/g++-15   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk   -v -Wl,-v -o CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp
 Using built-in specs.
 COLLECT_GCC=/opt/homebrew/bin/g++-15
 Target: aarch64-apple-darwin25
@@ -25,8 +25,8 @@ Configured with: ../configure --prefix=/opt/homebrew/opt/gcc --libdir=/opt/homeb
 Thread model: posix
 Supported LTO compression algorithms: zlib zstd
 gcc version 15.2.0 (Homebrew GCC 15.2.0_1) 
-COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_e387d.dir/'
- /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/cc1plus -quiet -v -iprefix /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/ -D__DYNAMIC__ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -fPIC -quiet -dumpdir CMakeFiles/cmTC_e387d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mmacosx-version-min=26.0.0 -mcpu=apple-m1 -mlittle-endian -mabi=lp64 -version -o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccQ92bct.s
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_f0dcd.dir/'
+ /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/cc1plus -quiet -v -iprefix /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/ -D__DYNAMIC__ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -fPIC -quiet -dumpdir CMakeFiles/cmTC_f0dcd.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mmacosx-version-min=26.0.0 -mcpu=apple-m1 -mlittle-endian -mabi=lp64 -version -o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccP9aQOe.s
 GNU C++17 (Homebrew GCC 15.2.0_1) version 15.2.0 (aarch64-apple-darwin25)
 	compiled by GNU C version 15.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
 
@@ -52,19 +52,19 @@ ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX2
  /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk/System/Library/Frameworks
 End of search list.
 Compiler executable checksum: a37d1cd6599b6720a977e39427c2228b
-COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_e387d.dir/'
- as -arch arm64 -v -mmacosx-version-min=26.0 -o CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccQ92bct.s
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_f0dcd.dir/'
+ as -arch arm64 -v -mmacosx-version-min=26.0 -o CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccP9aQOe.s
 Apple clang version 21.0.0 (clang-2100.0.123.102)
 Target: arm64-apple-darwin25.4.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
- "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1as -triple arm64-apple-macosx26.0.0 -target-sdk-version=26.4 -filetype obj -main-file-name ccQ92bct.s -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -fdebug-compilation-dir=/Users/hilays79/Fourier_Space/codes/PFB_cpp/build/CMakeFiles/CMakeTmp -dwarf-debug-producer "Apple clang version 21.0.0 (clang-2100.0.123.102)" -dwarf-version=5 -mrelocation-model pic -o CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccQ92bct.s
+ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1as -triple arm64-apple-macosx26.0.0 -target-sdk-version=26.4 -filetype obj -main-file-name ccP9aQOe.s -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -fdebug-compilation-dir=/Users/hilays79/Fourier_Space/codes/PFB_cpp/build/CMakeFiles/CMakeTmp -dwarf-debug-producer "Apple clang version 21.0.0 (clang-2100.0.123.102)" -dwarf-version=5 -mrelocation-model pic -o CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccP9aQOe.s
 COMPILER_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/
 LIBRARY_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../../
-COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.'
-Linking CXX executable cmTC_e387d
-/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e387d.dir/link.txt --verbose=1
-/opt/homebrew/bin/g++-15  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e387d 
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_f0dcd
+/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0dcd.dir/link.txt --verbose=1
+/opt/homebrew/bin/g++-15  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_f0dcd 
 Using built-in specs.
 COLLECT_GCC=/opt/homebrew/bin/g++-15
 COLLECT_LTO_WRAPPER=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/lto-wrapper
@@ -75,10 +75,10 @@ Supported LTO compression algorithms: zlib zstd
 gcc version 15.2.0 (Homebrew GCC 15.2.0_1) 
 COMPILER_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/
 LIBRARY_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../../
-COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'cmTC_e387d' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_e387d.'
- /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/collect2 -demangle -dynamic -arch arm64 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -macos_version_min 26.0.0 -o cmTC_e387d -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15 -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../.. -lemutls_w -lheapt_w -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc -lSystem -no_compact_unwind -rpath @loader_path -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc/aarch64-apple-darwin25/15 -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'cmTC_f0dcd' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_f0dcd.'
+ /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/collect2 -demangle -dynamic -arch arm64 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -macos_version_min 26.0.0 -o cmTC_f0dcd -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15 -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../.. -lemutls_w -lheapt_w -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc -lSystem -no_compact_unwind -rpath @loader_path -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc/aarch64-apple-darwin25/15 -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current
 collect2 version 15.2.0
-/opt/local/bin/ld -demangle -dynamic -arch arm64 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -macos_version_min 26.0.0 -o cmTC_e387d -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15 -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../.. -lemutls_w -lheapt_w -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc -lSystem -no_compact_unwind -rpath @loader_path -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc/aarch64-apple-darwin25/15 -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current
+/opt/local/bin/ld -demangle -dynamic -arch arm64 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -macos_version_min 26.0.0 -o cmTC_f0dcd -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15 -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../.. -lemutls_w -lheapt_w -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc -lSystem -no_compact_unwind -rpath @loader_path -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc/aarch64-apple-darwin25/15 -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current
 @(#)PROGRAM:ld PROJECT:ld-1266.8
 BUILD 01:30:17 Apr  9 2026
 configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
@@ -121,9 +121,9 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /Users/hilays79/Fourier_Space/codes/PFB_cpp/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/make -f Makefile cmTC_e387d/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_e387d.dir/build.make CMakeFiles/cmTC_e387d.dir/build]
-  ignore line: [Building CXX object CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/opt/homebrew/bin/g++-15   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk   -v -Wl -v -o CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Run Build Command(s):/usr/bin/make -f Makefile cmTC_f0dcd/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_f0dcd.dir/build.make CMakeFiles/cmTC_f0dcd.dir/build]
+  ignore line: [Building CXX object CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/opt/homebrew/bin/g++-15   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk   -v -Wl -v -o CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -c /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/opt/homebrew/bin/g++-15]
   ignore line: [Target: aarch64-apple-darwin25]
@@ -131,8 +131,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib zstd]
   ignore line: [gcc version 15.2.0 (Homebrew GCC 15.2.0_1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_e387d.dir/']
-  ignore line: [ /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/cc1plus -quiet -v -iprefix /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/ -D__DYNAMIC__ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -fPIC -quiet -dumpdir CMakeFiles/cmTC_e387d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mmacosx-version-min=26.0.0 -mcpu=apple-m1 -mlittle-endian -mabi=lp64 -version -o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccQ92bct.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_f0dcd.dir/']
+  ignore line: [ /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/cc1plus -quiet -v -iprefix /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/ -D__DYNAMIC__ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk /opt/local/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -fPIC -quiet -dumpdir CMakeFiles/cmTC_f0dcd.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mmacosx-version-min=26.0.0 -mcpu=apple-m1 -mlittle-endian -mabi=lp64 -version -o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccP9aQOe.s]
   ignore line: [GNU C++17 (Homebrew GCC 15.2.0_1) version 15.2.0 (aarch64-apple-darwin25)]
   ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
   ignore line: []
@@ -158,19 +158,19 @@ Parsed CXX implicit link information from above output:
   ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk/System/Library/Frameworks]
   ignore line: [End of search list.]
   ignore line: [Compiler executable checksum: a37d1cd6599b6720a977e39427c2228b]
-  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_e387d.dir/']
-  ignore line: [ as -arch arm64 -v -mmacosx-version-min=26.0 -o CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccQ92bct.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_f0dcd.dir/']
+  ignore line: [ as -arch arm64 -v -mmacosx-version-min=26.0 -o CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccP9aQOe.s]
   ignore line: [Apple clang version 21.0.0 (clang-2100.0.123.102)]
   ignore line: [Target: arm64-apple-darwin25.4.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1as -triple arm64-apple-macosx26.0.0 -target-sdk-version=26.4 -filetype obj -main-file-name ccQ92bct.s -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -fdebug-compilation-dir=/Users/hilays79/Fourier_Space/codes/PFB_cpp/build/CMakeFiles/CMakeTmp -dwarf-debug-producer "Apple clang version 21.0.0 (clang-2100.0.123.102)" -dwarf-version=5 -mrelocation-model pic -o CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccQ92bct.s]
+  ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1as -triple arm64-apple-macosx26.0.0 -target-sdk-version=26.4 -filetype obj -main-file-name ccP9aQOe.s -target-cpu apple-m1 -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +ccpp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +flagm -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -fdebug-compilation-dir=/Users/hilays79/Fourier_Space/codes/PFB_cpp/build/CMakeFiles/CMakeTmp -dwarf-debug-producer "Apple clang version 21.0.0 (clang-2100.0.123.102)" -dwarf-version=5 -mrelocation-model pic -o CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o /var/folders/x4/2m4tyfh17tn83fvyv_wysqgh0000gq/T//ccP9aQOe.s]
   ignore line: [COMPILER_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/]
   ignore line: [LIBRARY_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.']
-  ignore line: [Linking CXX executable cmTC_e387d]
-  ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e387d.dir/link.txt --verbose=1]
-  ignore line: [/opt/homebrew/bin/g++-15  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_e387d ]
+  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mmacosx-version-min=26.0.0'  '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_f0dcd]
+  ignore line: [/opt/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0dcd.dir/link.txt --verbose=1]
+  ignore line: [/opt/homebrew/bin/g++-15  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_f0dcd ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/opt/homebrew/bin/g++-15]
   ignore line: [COLLECT_LTO_WRAPPER=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/lto-wrapper]
@@ -181,8 +181,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 15.2.0 (Homebrew GCC 15.2.0_1) ]
   ignore line: [COMPILER_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/]
   ignore line: [LIBRARY_PATH=/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/:/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'cmTC_e387d' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_e387d.']
-  link line: [ /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/collect2 -demangle -dynamic -arch arm64 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -macos_version_min 26.0.0 -o cmTC_e387d -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15 -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../.. -lemutls_w -lheapt_w -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc -lSystem -no_compact_unwind -rpath @loader_path -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc/aarch64-apple-darwin25/15 -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current]
+  ignore line: [COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk' '-v' '-o' 'cmTC_f0dcd' '-mmacosx-version-min=26.0.0' '-asm_macosx_version_min=26.0' '-nodefaultexport' '-mcpu=apple-m1' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_f0dcd.']
+  link line: [ /opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/collect2 -demangle -dynamic -arch arm64 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.4.sdk -macos_version_min 26.0.0 -o cmTC_f0dcd -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15 -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc -L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../.. -lemutls_w -lheapt_w -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc -lSystem -no_compact_unwind -rpath @loader_path -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc/aarch64-apple-darwin25/15 -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current/gcc -rpath /opt/homebrew/Cellar/gcc/15.2.0_1/lib/gcc/current]
     arg [/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../libexec/gcc/aarch64-apple-darwin25/15/collect2] ==> ignore
     arg [-demangle] ==> ignore
     arg [-dynamic] ==> ignore
@@ -193,7 +193,7 @@ Parsed CXX implicit link information from above output:
     arg [-macos_version_min] ==> ignore
     arg [26.0.0] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_e387d] ==> ignore
+    arg [cmTC_f0dcd] ==> ignore
     arg [-L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15] ==> dir [/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15]
     arg [-L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc] ==> dir [/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc]
     arg [-L/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../..] ==> dir [/opt/homebrew/Cellar/gcc/15.2.0_1/bin/../lib/gcc/current/gcc/aarch64-apple-darwin25/15/../../..]
@@ -202,7 +202,7 @@ Parsed CXX implicit link information from above output:
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_e387d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_f0dcd.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lgcc] ==> lib [gcc]
     arg [-lSystem] ==> lib [System]

@@ -55,7 +55,9 @@ namespace dada {
 
 // --- 3. HELPER: BUILD FILEPATHS (Updated with bit-depth subdirectories) ---
     inline std::string build_filepath(bool is_input, const std::string& type, int nbit, int M, int P, int W, bool noise, double freq, int d_per, int d_start) {
-        std::string base = is_input ? "/Users/hilays79/Fourier_Space/Data/input_files/" : "/Users/hilays79/Fourier_Space/Data/output_files/c++/";
+        // Assumes the executable is run from codes/PFB_cpp/build/
+        std::string repo_root = "../../../"; 
+        std::string base = is_input ? repo_root + "Data/input_files/" : repo_root + "Data/output_files/c++/";
         
         // New directory structure: {type}/{nbit}-bit/
         std::string bit_dir = std::to_string(nbit) + "-bit/";
